@@ -24,9 +24,7 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
   - [ ] login
     - [ ] forgot password and password reset
 
-### Theme: 
-this template owner!
-
+### Template: 
 - Template Name: Logis
 - Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
 - Author: BootstrapMade.com
