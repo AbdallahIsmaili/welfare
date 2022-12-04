@@ -19,6 +19,7 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
  ### TODO.
 
 - [ ] User identification
+  - [ ] creating users table
   - [ ] register
     - [ ] email/phone number verfication
   - [ ] login
