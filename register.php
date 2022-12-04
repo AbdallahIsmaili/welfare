@@ -91,7 +91,7 @@
         <div class="col-lg-5 mt-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
             <p class='mt-5' data-aos="fade-up" data-aos-delay="100">Facere distinctio molestiae nisi fugit tenetur repellat non praesentium nesciunt optio quis sit odio nemo quisquam. eius quos reiciendis eum vel eum voluptatem eum maiores eaque id optio ullam occaecati odio est possimus vel reprehenderit</p>
             
-            <h5>Don't have an account, <a href="login.php">Login</a></h5>
+            <h5>Don't have an account, <a href="login">Login</a></h5>
             
         </div>
 

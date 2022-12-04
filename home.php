@@ -1,3 +1,9 @@
+<?php
+
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +52,7 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="public/assets/img/logo.png" alt=""> -->
-        <h1>Logis</h1>
+        <h1>Welfare</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -75,7 +81,17 @@
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li>
+
+          <?php 
+          
+            if(isset($_SESSION['user_url'])){
+              echo "<li><a class='get-a-quote' href='account'>My account</a></li>";
+            }else{
+              echo "<li><a class='get-a-quote' href='login'>Login</a></li>";
+            }
+
+          
+          ?>
         </ul>
       </nav><!-- .navbar -->
 
