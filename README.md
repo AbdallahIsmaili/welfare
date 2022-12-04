@@ -15,8 +15,7 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
 > > file location: welfare\app\database
 
 
- 
- ### TODO.
+ ### TODO:
 
 - [ ] User identification
   - [ ] creating users table
@@ -25,3 +24,10 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
   - [ ] login
     - [ ] forgot password and password reset
 
+### Theme: 
+this template owner!
+
+- Template Name: Logis
+- Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
+- Author: BootstrapMade.com
+- License: https://bootstrapmade.com/license/
