@@ -1,3 +1,69 @@
+<?php
+include "app/classes/databaseClass.php";
+include "app/classes/registerClass.php"; 
+
+$register = new Register();
+
+$error = "";
+
+if(isset($_GET['email'])){
+  $email = $_GET['email'];
+}else{
+  $email = '';
+}
+
+if(isset($_POST['register'])){
+
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
+    $birthDate = trim($_POST['birth_date']);
+    $cin = trim($_POST['cin']);
+
+    $date = date("Y-m-d H:i:s");
+    $image = "no-profile.webp";
+    $validation = 0;
+    $phoneNumber = 'no phone';
+    $userAddress = 'no address';
+
+    // Generate a verification key
+    $verificationKey = md5(time(). $email);
+
+    if(empty($email) && empty($name) && empty($password) && empty($confirm_password)){
+        $error .= "Please make sure to fill in all the boxes <br>";
+    }else if(empty($email) || !preg_match("/^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/", $email)){
+        $error .= "Please enter a valid email address <br>";
+    }else if(empty($name) || !preg_match("/^[a-zA-Z_ ]*$/", $name)){
+        $error .= "Please enter a valid name <br>";
+    }else if(strlen($password) < 8){
+        $error .= "Password must be at least 8 characters long <br>";
+    }else if($password !== $confirm_password){
+        $error .= "Passwords do not match <br>";
+    }else if(empty($password)){
+        $error .= "Please enter a password <br>";
+    }else if(empty($confirm_password)){
+        $error .= "Please enter a confirmation password <br>";
+    }else if(empty($cin)){
+      $error .= "Please enter your cin. <br>";
+    }else if(empty($birthDate)){
+      $error .= "Please enter your birth date. <br>";
+    }
+
+    if(empty($error)){
+        $result = $register->registerUser($name, $email, $phoneNumber, $userAddress, $password, $confirm_password, $date, $image, $validation, $verificationKey, $cin, $birthDate);
+
+        if($result == 1){
+          $validationError .= "Used Email has been already taken! <a href='login.php?email=$email'> [ Log in with that email. ] </a> <br>";
+        }
+        
+    }
+    
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,21 +167,19 @@
 
           <form action="#" class="" data-aos="fade-up" data-aos-delay="200">
 
-              <input type="text" class="form-control" placeholder="Your first name">
+              <input type="text" name="name" class="form-control" placeholder="Your full name">
 
-              <input type="text" class="form-control" placeholder="Your family name">
+            <input type="text" name="email" class="form-control" placeholder="Your email address">
 
-            <input type="text" class="form-control" placeholder="Your email address">
+            <input type="text" name="cin" class="form-control" placeholder="Your CIN">
 
-            <input type="text" class="form-control" placeholder="Your CIN">
+            <input type="text" class="form-control" name="birth_date" placeholder="Date of birth" onfocus="(this.type='date')">
 
-            <input type="date" class="form-control" placeholder="Your birth date">
-
-            <input type="text" class="form-control" placeholder="Your password">
+            <input type="text" name="password" class="form-control" placeholder="Your password">
             
-            <input type="text" class="form-control" placeholder="Your confirmation password">
+            <input type="text" name="confirm_password" class="form-control" placeholder="Your confirmation password">
 
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" name="register" class="btn btn-primary">Register</button>
           </form>
 
         </div>
