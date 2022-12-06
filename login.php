@@ -1,3 +1,15 @@
+<?php
+
+if(isset($_GET['email'])){
+  $email = $_GET['email'];
+
+}else{
+  $email = "";
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,11 +103,11 @@
 
           <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
 
-          <form action="#" class="" data-aos="fade-up" data-aos-delay="200">
+          <form action="" method="POST" class="" data-aos="fade-up" data-aos-delay="200">
 
-            <input type="text" class="form-control" placeholder="Your email address">
+            <input type="text" value="<?=$email?>" name="email" class="form-control" placeholder="Your email address">
             <br>
-            <input type="text" class="form-control" placeholder="Your password">
+            <input type="password" name="password" class="form-control" placeholder="Your password">
             <br>
 
             <button type="submit" class="btn btn-primary">Login</button>

@@ -4,8 +4,6 @@ include "app/classes/registerClass.php";
 
 $register = new Register();
 
-$error = "";
-
 if(isset($_GET['email'])){
   $email = $_GET['email'];
 }else{
@@ -26,6 +24,8 @@ if(isset($_POST['register'])){
     $validation = 0;
     $phoneNumber = 'no phone';
     $userAddress = 'no address';
+    $error = "";
+    $validationError = "";
 
     // Generate a verification key
     $verificationKey = md5(time(). $email);
@@ -54,7 +54,7 @@ if(isset($_POST['register'])){
         $result = $register->registerUser($name, $email, $phoneNumber, $userAddress, $password, $confirm_password, $date, $image, $validation, $verificationKey, $cin, $birthDate);
 
         if($result == 1){
-          $validationError .= "Used Email has been already taken! <a href='login.php?email=$email'> [ Log in with that email. ] </a> <br>";
+          $validationError .= "Used Email has been already taken! <a href='login?email=$email'> [ Log in with that email. ] </a> <br>";
         }
         
     }
@@ -95,12 +95,6 @@ if(isset($_POST['register'])){
   <!-- Template Main CSS File -->
   <link href="public/assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Logis - v1.2.1
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -155,7 +149,27 @@ if(isset($_POST['register'])){
       <div class="row gy-4 d-flex justify-content-between">
         
         <div class="col-lg-5 mt-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <p class='mt-5' data-aos="fade-up" data-aos-delay="100">Facere distinctio molestiae nisi fugit tenetur repellat non praesentium nesciunt optio quis sit odio nemo quisquam. eius quos reiciendis eum vel eum voluptatem eum maiores eaque id optio ullam occaecati odio est possimus vel reprehenderit</p>
+            <p class='mt-5 fs-4' data-aos="fade-up" data-aos-delay="100">Welfare is your road to safety, yourselves, families, and friends are the whale life... Protect them.</p>
+
+            <?php
+
+              if(isset($error) and !empty($error)){
+                echo "<div class='bg-danger text-light alert alert-danger alert-icon' role='alert'>
+                <i class='mdi mdi-diameter-variant'></i>  $error
+                </div>";
+              }else{
+                echo "";
+              }
+
+              if(isset($validationError) and !empty($validationError)){
+                echo "<div class='bg-warning text-light alert alert-warning alert-icon' role='alert'>
+                <i class='mdi mdi-alert-decagram-outline'></i> $validationError
+                </div>";
+              }else{
+                echo "";
+              }
+
+            ?>
             
             <h5>Don't have an account, <a href="login">Login</a></h5>
             
@@ -165,7 +179,7 @@ if(isset($_POST['register'])){
 
           <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
 
-          <form action="#" class="" data-aos="fade-up" data-aos-delay="200">
+          <form action="" method="POST" class="" data-aos="fade-up" data-aos-delay="200">
 
               <input type="text" name="name" class="form-control" placeholder="Your full name">
 
@@ -175,9 +189,9 @@ if(isset($_POST['register'])){
 
             <input type="text" class="form-control" name="birth_date" placeholder="Date of birth" onfocus="(this.type='date')">
 
-            <input type="text" name="password" class="form-control" placeholder="Your password">
+            <input type="password" name="password" class="form-control" placeholder="Your password">
             
-            <input type="text" name="confirm_password" class="form-control" placeholder="Your confirmation password">
+            <input type="password" name="confirm_password" class="form-control" placeholder="Your confirmation password">
 
             <button type="submit" name="register" class="btn btn-primary">Register</button>
           </form>

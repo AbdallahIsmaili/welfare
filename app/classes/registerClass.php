@@ -30,8 +30,7 @@ class Register extends Database{
                     $result = $statement->fetchAll(PDO::FETCH_OBJ);
 
                     // Sending email Verification:
-
-                    $path = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] ."/hoyostore/validation/registration-verify.php?k=$verificationKey";
+                    $path = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] ."/welfare/private/validation/verifying.php?k=$verificationKey";
 
                     $to = $email;
                     $verification_link = "<a href='$path'>Your account verification link</a>";
@@ -40,7 +39,7 @@ class Register extends Database{
                         
                         Hello $name <br>
 
-                        Are you ready to gain access to all of the assets we prepared for clients of HoyoStore?<br>
+                        Are you ready to gain access to all of the assets we prepared for Welfare users?<br>
 
                         First, you must complete your registration by clicking on the link below:<br><br>
 
@@ -51,7 +50,7 @@ class Register extends Database{
 
                         See you there!<br><br>
 
-                        <strong>Best regards, the <u>HoyoStore</u> team.</strong>
+                        <strong>Best regards, the <u>Welfare</u> team.</strong>
                     ";
 
                     $headers = "From: aismaili690@gmail.com \r\n";
