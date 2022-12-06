@@ -20,12 +20,12 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
 
  ### TODO:
  
-- [ ] creating users database table.
-- [ ] User identification.
-  - [ ] sign in.
-    - [ ] email/phone number verfication.
-  - [ ] login.
-    - [ ] forgot password and password reset.
+- [x] creating users database table.
+- [x] User identification.
+  - [x] sign in.
+    - [x] email/phone number verfication.
+  - [x] login.
+    - [x] forgot password and password reset.
 
 ### Template: 
 - Template Name: Logis
