@@ -183,7 +183,7 @@ if(isset($_POST['register'])){
 
               <input type="text" name="name" class="form-control" placeholder="Your full name">
 
-            <input type="text" name="email" class="form-control" placeholder="Your email address">
+            <input type="text" value="<?=$email?>" name="email" class="form-control" placeholder="Your email address">
 
             <input type="text" name="cin" class="form-control" placeholder="Your CIN">
 

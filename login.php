@@ -1,10 +1,161 @@
-<?php
+<?php 
 
+// Includes
+include "app/classes/databaseClass.php";
+include "app/classes/loginClass.php"; 
+include "app/classes/verificationClass.php"; 
+
+// Declared Variables
+$error = "";
+$password = "";
+$email = '';
+$validationError = '';
+$isValid = true;
+$verificationKey = '';
+$name = '';
+
+// Getting user email
 if(isset($_GET['email'])){
-  $email = $_GET['email'];
+    $email = $_GET['email'];
+}else{
+    $email = '';
+}
+
+// Checking if the user email is verified or not
+if(isset($_GET['v'])){
+  $checkValidation = new Verification();
+  
+  $result = $checkValidation->isValid($email);
+  if($result == 0){
+    $isValid = false;
+  }else if($result == 1){
+    $isValid = true;
+  }else{
+    $isValid = "No user registered with that email.";
+  }
+}
+
+
+// Cookie for remembering password
+if (isset($_COOKIE['email']) and isset($_COOKIE['password'])) 
+{
+  $emailCookie = $_COOKIE['email'];
+  $passwordCookie = $_COOKIE['password'];
 
 }else{
-  $email = "";
+  $emailCookie = "";
+  $passwordCookie = "";
+}
+
+// Log in to your account testing and validation
+$login = new Login();
+
+if(isset($_POST['login'])){
+
+    // Getting informations from the form
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    // Checking the felids
+    if(empty($email) && empty($name) && empty($password) && empty($confirm_password)){
+        $error .= "Please make sure to fill in all the boxes <br>";
+
+    }else if(empty($email) || !preg_match("/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/", $email)){
+        $error .= "Please enter a valid email address <br>";
+
+    }else if(strlen($password) < 8){
+        $error .= "Password must be at least 8 characters long <br>";
+
+    }else if(empty($password)){
+        $error .= "Please enter a password <br>";
+
+    }else if($error == ""){
+      
+      // Setting up the cookies
+        if(isset($_POST['remember']) and $_POST['remember'] == 'on'){
+          setcookie('email', $email, time() + (86400 * 30), "/", $domain = "", $secure = false, $httponly = false );
+          setcookie('password', $password, time() + (86400 * 30), "/", $domain = "", $secure = false, $httponly = false );
+        }
+
+        $password = hash("sha1", $password);
+
+        $result = $login->loginUser($email, $password);
+        if($result == 1){
+            
+            echo "<script>window.open('home','_self')</script>";
+        }
+
+        if($result == 2){
+          $error .= "Wrong Password <br>";
+        }
+
+        if($result == 3){
+            
+          $validationError .= "No user found with that email. Want to create an account with that email? <a href='register?email=$email'> [ Yes use it ] </a> <br>";
+            
+        }
+
+        if($result == 4){
+            $isValid = false;
+            $validationError .= "Please make sure your email is verified! <br>";
+        }
+        
+    }
+    
+}
+
+// Messaging you if your account is not verified
+if($isValid == false){
+    $validationError = 'We just sent a verification link to your email address <u>'. $email .'</u>, Please verify your email address before you can access your account.';
+}
+
+
+// Resend new verification link
+$Verification = new Verification();
+
+if(isset($_POST['resend-verification-code'])){
+
+  $verificationKey = md5(time(). $email);
+
+  $result = $Verification->updateVerificationCode($verificationKey, $email);
+
+  if($result == 1){
+    $path = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] ."/welfare/private/validation/verifying?k=$verificationKey";
+
+    $to = $email;
+    $verification_link = "<a href='$path'>Your account verification link</a>";
+    $subject = "Your email verification.";
+    $message = "
+        
+        Hello $name <br>
+
+        Are you ready to gain access to all of the assets we prepared for Welfare users?<br>
+
+        First, you must complete your registration by clicking on the link below:<br><br>
+
+        $verification_link
+        <br><br>
+
+        This link will verify your email address, and then you’ll officially be a part of our community.<br>
+
+        See you there!<br><br>
+
+        <strong>Best regards, the <u>Welfare</u> team.</strong>
+    ";
+
+    $headers = "From: aismaili690@gmail.com \r\n";
+    $headers .= "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+    mail($to, $subject, $message, $headers);
+
+    $validationError = "We sent a new verification link to your email $email.";
+
+  }else{
+    $validationError = "Something went wrong, try again later.";
+
+  }
+
 }
 
 ?>
@@ -41,12 +192,6 @@ if(isset($_GET['email'])){
   <!-- Template Main CSS File -->
   <link href="public/assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Logis - v1.2.1
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -110,13 +255,39 @@ if(isset($_GET['email'])){
             <input type="password" name="password" class="form-control" placeholder="Your password">
             <br>
 
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" name="login" class="btn btn-primary">Login</button>
           </form>
 
         </div>
 
         <div class="col-lg-5 mt-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
             <p class='mt-5' data-aos="fade-up" data-aos-delay="100">Facere distinctio molestiae nisi fugit tenetur repellat non praesentium nesciunt optio quis sit odio nemo quisquam. eius quos reiciendis eum vel eum voluptatem eum maiores eaque id optio ullam occaecati odio est possimus vel reprehenderit</p>
+
+              <?php
+
+                if($isValid == false){
+                  echo "<form action='' method='post'>
+                  <button class='btn btn-warning' type='submit' id='resendVerificationCode' name='resend-verification-code'>Resend verification link</button> 
+                </form>";
+                }
+
+                if(isset($error) and !empty($error)){
+                  echo "<div class='bg-danger text-light alert alert-danger alert-icon' role='alert'>
+                  <i class='mdi mdi-diameter-variant'></i>  $error
+                  </div>";
+                }else{
+                  echo "";
+                }
+
+                if(isset($validationError) and !empty($validationError)){
+                  echo "<div class='bg-warning text-light alert alert-warning alert-icon' role='alert'>
+                  <i class='mdi mdi-alert-decagram-outline'></i> $validationError
+                  </div>";
+                }else{
+                  echo "";
+                }
+
+              ?>
             
             <h5>Don't have an account, <a href="register">Register</a></h5>
             
