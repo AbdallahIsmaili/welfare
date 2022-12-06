@@ -8,28 +8,3 @@ Open source web application which aims to protect and guide tourists, foreigners
 <br />
 <br />
 These areas are identified and marked by legal organizations (such as the police station), which helps them identify the areas of people at risk and quickly obtain information from messages, complaints, and notifications of users if they encounter a specific problem, and thus determine the nearest policeman or intervention team to the place The intention is to intervene quickly to ensure the safety of people.
-
-## Contribute:
-> 1. Clone the repo
-
-```bash
-$ git clone https://github.com/AbdallahIsmaili/welfare.git
-```
-
-> 2. import datebase file (welfare.sql) to phpmyadmin
-> > file location: welfare\app\database
-
-
- ### TODO:
-- [ ] Create my account page.
-- [ ] Add/Update profile picture.
-- [ ] Update profile information.
-- [ ] Add information page (to add user local address and phone number).
-- [ ] phone number verfication via SMS.
-
-### Template: 
-- Template Name: Logis
-- Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-- Author: BootstrapMade.com
-- License: https://bootstrapmade.com/license/
-
