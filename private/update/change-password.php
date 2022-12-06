@@ -140,97 +140,231 @@ if(isset($_POST['change'])){
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HoyoStore - Login</title>
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <title>Welfare - reset password</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="../app/theme/assets/css/style.css?v1.10.2">
+  <!-- Favicons -->
+  <link href="../../public/assets/img/favicon.png" rel="icon">
+  <link href="../../public/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- 
-    - google font link
-  -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../../public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../../public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../../public/assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../../public/assets/css/main.css" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- 
-    - #HEADER
-  -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="../../public/assets/img/logo.png" alt=""> -->
+        <h1>Logis</h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="get-a-quote" href="restore-password.php">Back</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <!-- End Header -->
 
 
-  <div class="container">
-        
-        <br>
-        <section class="login-form">
-            <h3 class="section-title">Hello and welcome, one more tap to go!</h3>
-            <br>
 
-            <center>
 
-              <p class='validation-error'><?php echo $validationError; ?></p>
 
-              <?php
 
-                if($isValid == false){
-                  echo "<form action='' method='post'>
-                  <button type='submit' id='resendVerificationCode' name='resend-verification-code'>Resend verification link</button> 
-                </form>";
-                }
 
-              ?>
 
-              <h4 style="color: red"><?php echo $error; ?></h4>
 
-            </center>
-            <br>
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+      <div class="row gy-4 d-flex justify-content-between">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+
+          <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
 
             <form action="" method="POST">
 
-                <p class="inputName">New password :</p>
-                <input type="password" name="password" id="password" class="register_field" value="" placeholder="Enter new password"><i class="far fa-eye" id="togglePassword" style="cursor: pointer; font-size: 13px;"> Show password</i><br><br>
+                <label class="form-control fw-bold">New password :</label>
+                <input type="password" name="password" id="password" class="form-control" value="" placeholder="Enter new password"><i class="far fa-eye" id="togglePassword" style="cursor: pointer; font-size: 13px;"> Show password</i>
 
-                <p class="inputName">confirm password :</p>
-                <input type="password" name="Cpassword" id="Cpassword" value="" class="register_field" placeholder="Confirm password"><i class="far fa-eye" id="toggleCPassword" style="cursor: pointer; font-size: 13px;"> Show password</i><br>
-
-                <br>
-                <br>
-                <br>
+                <label class="form-control fw-bold">confirm password :</label>
+                <input type="password" name="Cpassword" id="Cpassword" value="" class="form-control" placeholder="Confirm password"><i class="far fa-eye" id="toggleCPassword" style="cursor: pointer; font-size: 13px;"> Show password</i>
+                  <br>
                     <button type="submit" name="change" class="btn btn-primary">Update password</button>
                       
             </form>
-            <br>
-            <br>
             
-        </section>
 
+        </div>
+
+        <div class="col-lg-5 mt-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+
+        <h3 class="section-title">Hello and welcome, one more tap to go!</h3>
+
+        <?php
+
+            if(isset($error) and !empty($error)){
+            echo "<div class='bg-danger text-light alert alert-danger alert-icon' role='alert'>
+            <i class='mdi mdi-diameter-variant'></i>  $error
+            </div>";
+            }else{
+            echo "";
+            }
+
+            if(isset($validationError) and !empty($validationError)){
+            echo "<div class='bg-warning text-light alert alert-warning alert-icon' role='alert'>
+            <i class='mdi mdi-alert-decagram-outline'></i> $validationError
+            </div>";
+            }else{
+            echo "";
+            }
+
+            if($isValid == false){
+              echo "<form action='' method='post'>
+              <button type='submit' id='resendVerificationCode' name='resend-verification-code'>Resend verification link</button> 
+            </form>";
+            }
+
+        ?>
+            
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+  
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span>Logis</span>
+          </a>
+          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <div class="social-links d-flex mt-4">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>
+            A108 Adam Street <br>
+            New York, NY 535022<br>
+            United States <br><br>
+            <strong>Phone:</strong> +1 5589 55488 55<br>
+            <strong>Email:</strong> info@example.com<br>
+          </p>
+
+        </div>
+
+      </div>
     </div>
 
-    <br>
-    <br>
+    <div class="container mt-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Logis</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
 
-  
-  <!-- 
-    - #FOOTER
-  -->
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
 
 
-  <!-- 
-    - custom js link
-  -->
-  <script src="../app/theme/assets/js/script.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="../../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../public/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../../public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../../public/assets/vendor/aos/aos.js"></script>
+  <script src="../../public/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../../public/assets/js/main.js"></script>
 
   <!-- 
     - ionicon link
