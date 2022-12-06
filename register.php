@@ -135,7 +135,7 @@ if(isset($_POST['register'])){
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li>
+          <li><a class="get-a-quote" href="login">New? Sign up</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -171,7 +171,6 @@ if(isset($_POST['register'])){
 
             ?>
             
-            <h5>Don't have an account, <a href="login">Login</a></h5>
             
         </div>
 

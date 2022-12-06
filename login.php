@@ -232,7 +232,7 @@ if(isset($_POST['resend-verification-code'])){
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li>
+          <li><a class="get-a-quote" href="register">Already user? sign in</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -288,8 +288,8 @@ if(isset($_POST['resend-verification-code'])){
                 }
 
               ?>
-            
-            <h5>Don't have an account, <a href="register">Register</a></h5>
+
+            <p><a href="private/update/restore-password.php">forgot you password?</a></p>
             
         </div>
 
