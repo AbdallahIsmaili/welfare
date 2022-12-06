@@ -26,8 +26,4 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
 - [ ] Add information page (to add user local address and phone number).
 - [ ] phone number verfication via SMS.
 
-### Template: 
-- Template Name: Logis
-- Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-- Author: BootstrapMade.com
-- License: https://bootstrapmade.com/license/
+
