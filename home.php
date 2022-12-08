@@ -35,12 +35,6 @@
   <!-- Template Main CSS File -->
   <link href="public/assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Logis - v1.2.1
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -85,7 +79,7 @@
           <?php 
           
             if(isset($_SESSION['user_url'])){
-              echo "<li><a class='get-a-quote' href='account'>My account</a></li>";
+              echo "<li><a class='get-a-quote' href='users/account'>My account</a></li>";
             }else{
               echo "<li><a class='get-a-quote' href='login'>Login</a></li>";
             }

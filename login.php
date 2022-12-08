@@ -52,7 +52,7 @@ $login = new Login();
 
 if(isset($_POST['login'])){
 
-    // Getting informations from the form
+    // Getting information from the form
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
