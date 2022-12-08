@@ -1,6 +1,7 @@
 <?php
 
     $message = "Something went wrong, please make sure to enter again via the link we sent to your email address.";
+    
     include "../../app/classes/databaseClass.php";
     include "../../app/classes/verificationClass.php"; 
 

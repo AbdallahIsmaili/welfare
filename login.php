@@ -232,7 +232,7 @@ if(isset($_POST['resend-verification-code'])){
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a class="get-a-quote" href="register">Already user? sign in</a></li>
+          <li><a class="get-a-quote" href="register">New user? sign up</a></li>
         </ul>
       </nav><!-- .navbar -->
 
