@@ -10,20 +10,21 @@ These areas are identified and marked by legal organizations (such as the police
 $ git clone https://github.com/AbdallahIsmaili/welfare.git
 ```
 
-> 2. import datebase file (welfare.sql) to phpmyadmin
+> 2. import database file (welfare.sql) to phpmyadmin
 > > file location: welfare\app\database
 
 
  ### TODO:
- - [ ] Login/Signin by:
+  - [x] Create my account page.
+  - [ ] Add/Update profile picture.
+  - [ ] Update profile information.
+  - [ ] Add information page (to add user local address and phone number).
+  - [ ] phone number verification via SMS.
+ 
+  - [ ] Login/Signing by:
    - [ ] Google account.
    - [ ] Facebook account.
    - [ ] Apple/Twitter Account. 
- - [ ] Create my account page.
- - [ ] Add/Update profile picture.
- - [ ] Update profile information.
- - [ ] Add information page (to add user local address and phone number).
- - [ ] phone number verfication via SMS.
 
 ### Template: 
  - Template Name: Logis
