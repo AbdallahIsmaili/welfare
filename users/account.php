@@ -106,11 +106,11 @@ session_start();
         <div class="right__col">
           <nav>
             <ul>
-              <li><a href="">Home</a></li>
-              <li><a href="">About</a></li>
-              <li><a href="">Report</a></li>
-              <li><a href="">Mapping</a></li>
-              <li><a href="">Contact</a></li>
+              <li><a href="../home">Home</a></li>
+              <li><a href="../about">About</a></li>
+              <li><a href="../report">Report</a></li>
+              <li><a href="../map">Mapping</a></li>
+              <li><a href="../contact">Contact</a></li>
             </ul>
             <button><a style="color: white" href="../login">Sign in</a></button>
           </nav>
