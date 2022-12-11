@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$userPhoneNumber = "";
 
 ?>
 
@@ -16,6 +17,8 @@ session_start();
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/assets/css/all.min.css"
     />
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -32,12 +35,23 @@ session_start();
       <div class="cols__container">
         <div class="left__col">
           <div class="img__container">
-            <img src="assets/img/user.jpeg" alt="Anna Smith" />
+            <img src="uploads/img/no-profile.webp" alt="Anna Smith" />
             <span></span>
           </div>
-          <h2>Anna Smith</h2>
-          <p>UX/UI Designer</p>
-          <p>anna@example.com</p>
+          <h2><?= ucfirst($_SESSION['user_name'])?></h2>
+          <p><?=$_SESSION['user_email']?></p>
+          <?php
+            
+            if($_SESSION['user_phone'] == 'no phone'){
+              $userPhoneNumber = $_SESSION['user_phone'];
+
+              echo "<a href='update/my-phone'>$userPhoneNumber <i class='bx bx-edit bx-tada' ></i></a>";
+
+            }else{
+              echo "<p>$userPhoneNumber</p>";
+            }
+            
+          ?>
 
           <ul class="about">
             <li><span>4,073</span>Followers</li>
@@ -63,10 +77,11 @@ session_start();
         <div class="right__col">
           <nav>
             <ul>
-              <li><a href="">photos</a></li>
-              <li><a href="">galleries</a></li>
-              <li><a href="">groups</a></li>
-              <li><a href="">about</a></li>
+            <li><a href="../home">Home</a></li>
+              <li><a href="../about">About</a></li>
+              <li><a href="../report">Report</a></li>
+              <li><a href="../map">Mapping</a></li>
+              <li><a href="../contact">Contact</a></li>
             </ul>
             <button>Follow</button>
           </nav>
