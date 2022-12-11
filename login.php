@@ -4,6 +4,36 @@
 include "app/classes/databaseClass.php";
 include "app/classes/loginClass.php"; 
 include "app/classes/verificationClass.php"; 
+// require_once 'app/api/googleOAuth.php';
+
+// $login_button = "";
+
+// if(isset($_GET['code'])){
+//   $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+
+//   if(!isset($token['error'])){
+//     $client->setAccessToken($token['access_token']);
+//     $_SESSION['access_token'] = $token['access_token'];
+//     $google_service = new Google_Service_Oauth2($client);
+//     $data = $google_service->getinfo->get();
+
+//     if(!empty($data['given_name'])){
+//       $_SESSION['user_name'] = $data['given_name'];
+//     }
+
+//     if(!empty($data['email'])){
+//       $_SESSION['user_email'] = $data['email'];
+//     }
+
+//     if(!empty($data['picture'])){
+//       $_SESSION['user_image'] = $data['picture'];
+//     }
+//   }
+// }
+
+// if(!isset($_SESSION['access_token'])){
+//   $login_button = '<a href="'.$client->createAuthUrl().'"><img src="./public/assets/img/google-signin-button-1024x260.png" ></img></a>';
+// }
 
 // Declared Variables
 $error = "";
@@ -294,6 +324,20 @@ if(isset($_POST['resend-verification-code'])){
         </div>
 
         </div>
+
+        <?php
+
+          // if($login_button == ""){
+          //   echo "<div class='panel-heading' >Welcome user</div><div class='panel-body'>";
+          //   echo '<img src="'.$_SESSION["user_image"].'" class="img-responsive img-circle img-thumbnail" >';
+          //   echo '<h4><b>Name: </b> '.$_SESSION['user_name'].'</h4>';
+          //   echo '<h4><b>Email: </b> '.$_SESSION['user_email'].'</h4>';
+
+          // }else{
+          //   echo '<div align="center">'.$login_button.'</div>';
+          // }
+
+        ?> 
 
 
       </div>
