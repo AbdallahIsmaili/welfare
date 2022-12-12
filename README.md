@@ -16,15 +16,15 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
 
  ### TODO:
   - [x] Create my account page.
-  - [ ] Add/Update profile picture.
+  - [x] Add/Update profile picture.
   - [ ] Update profile information.
   - [ ] Add information page (to add user local address and phone number).
   - [ ] phone number verification via SMS.
  
   - [ ] Login/Signing by:
-   - [ ] Google account.
-   - [ ] Facebook account.
-   - [ ] Apple/Twitter Account. 
+      - [ ] Google account.
+      - [ ] Facebook account.
+      - [ ] Apple/Twitter Account. 
 
 ### Template: 
  - Template Name: Logis

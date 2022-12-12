@@ -27,6 +27,7 @@ public function loginUser($email, $password){
                     $_SESSION['user_image'] = $result[0]->profile_picture;
                     $_SESSION['join_date'] = $result[0]->join_date;
                     $_SESSION['validation'] = $result[0]->validation;
+                    $_SESSION['user_about'] = $result[0]->user_about;
                     return 1;
                     
                 }else{
