@@ -47,8 +47,10 @@ $name = '';
 // Getting user email
 if(isset($_GET['email'])){
     $email = $_GET['email'];
+}else if(isset($_POST['email'])){
+    $email = trim($_POST['email']);
 }else{
-    $email = '';
+  $email = '';
 }
 
 // Checking if the user email is verified or not
@@ -144,6 +146,24 @@ if($isValid == false){
 $Verification = new Verification();
 
 if(isset($_POST['resend-verification-code'])){
+
+  if(isset($_GET['email']) and !empty($_GET['email'])){
+    $email = $_GET['email'];
+
+  }else{
+    echo "<script>alert(No email entree, please enter an email);</script>";
+
+  }
+  
+  if(isset($_POST['email'])){
+    $email = trim($_POST['email']);
+
+  }else{
+    echo "<script>alert(No email entree, please enter an email);</script>";
+
+  }
+
+  echo "<script>alert($email);</script>";
 
   $verificationKey = md5(time(). $email);
 
