@@ -17,9 +17,10 @@ $ git clone https://github.com/AbdallahIsmaili/welfare.git
  ### TODO:
   - [x] Create my account page.
   - [x] Add/Update profile picture.
-  - [ ] Update profile information.
-  - [ ] Add information page (to add user local address and phone number).
-  - [ ] phone number verification via SMS.
+  - [x] Update profile information.
+  - [x] Add information page (to add user local address and phone number).
+  - [ ] Phone number verification via SMS.
+  - [ ] User cin verification by uploading his CIN card picture.
  
   - [ ] Login/Signing by:
       - [ ] Google account.
