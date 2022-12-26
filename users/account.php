@@ -89,12 +89,26 @@ if(isset($_POST['logout'])){
 
             }else{
               $userPhoneNumber = $_SESSION['user_phone'];
-              if($_SESSION['phoneNum'])
-              echo "<p>$userPhoneNumber  </p>";
+              if($_SESSION['user_PhoneNumberVerifying'] == 0){
 
+                echo "<p>$userPhoneNumber <a href='update/my-phone.php'><i style='color: red; font-size:17px;' class='bx bxs-phone-off bx-tada' ></i></a>  </p>";
+                
+              }else{
+                echo "<p>$userPhoneNumber <i class='bx bxs-phone-call'></i> </p>";
+              }
+            }
+
+            if($_SESSION['user_CinVerifying'] == 0){
+
+              echo "<p style='color: red;'> Your CIN is not verified. <a href='update/my-cin.php'>Verify now.</a></p>";
+              
+            }else{
+              echo "<p style='color: green;'>Your are verified.</p>";
             }
             
           ?>
+
+          <br>
 
         <form action="./update/updateImage.php" method="post" id='updatePictureForm' enctype="multipart/form-data">
 
