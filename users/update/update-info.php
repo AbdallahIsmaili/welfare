@@ -11,9 +11,9 @@ if(isset($_SESSION['user_url'])){
     $oldEmail = $_SESSION['user_email'];
     $oldUsername = $_SESSION['user_name'];
     $username = $_SESSION['user_name'];
-    $phoneNumber = $_SESSION['user_phone'];
-    $userAddress = $_SESSION['user_address'];
-    $userCIN = $_SESSION['user_cin'];
+    $oldPhoneNumber = $_SESSION['user_phone'];
+    $oldUserAddress = $_SESSION['user_address'];
+    $oldUserCIN = $_SESSION['user_cin'];
 
   }else{
 
@@ -22,8 +22,12 @@ if(isset($_SESSION['user_url'])){
     $oldUsername = "";
     $username = "";
     $phoneNumber = "";
+    $oldPhoneNumber = "";
+    $oldUserAddress = "";
     $userAddress = "";
+    $oldUserCIN = "";
     $userCIN = "";
+    $userAbout = "";
   }
 
 $profileUpdate = new Profile();
@@ -38,6 +42,25 @@ if(isset($_POST['update-info'])){
     $password = trim($_POST['confirmation_password']);
     $userAddress = trim($_POST['address']);
     $phoneNumber = trim($_POST['phone']);
+    $userCin = trim($_POST['cin']);
+    $userAbout = trim($_POST['about']);
+
+    if($phoneNumber == $oldPhoneNumber){
+        $phoneNumberVerifying = $_SESSION['user_PhoneNumberVerifying'];
+
+    }else{
+        $phoneNumberVerifying = 0;
+
+    }
+
+    if($userCin == $oldUserCIN){
+        $cinVerifying = $_SESSION['user_CinVerifying'];
+
+    }else{
+        $cinVerifying = 0;
+        
+    }
+
 
     if(empty($email) && empty($name) && empty($password) && empty($confirm_password)){
         $error .= "Please make sure to fill in all the boxes <br>";
@@ -59,7 +82,7 @@ if(isset($_POST['update-info'])){
     if(empty($error)){
         $password = hash("sha1", $password);
 
-        $result = $profileUpdate->updateUserInfo($name, $userURL, $email, $phoneNumber, $userAddress, $password);
+        $result = $profileUpdate->updateUserInfo($name, $userURL, $email, $phoneNumber, $userAddress, $password, $phoneNumberVerifying, $cinVerifying, $userAbout);
 
         if($result == 1){
             session_unset();
@@ -129,8 +152,7 @@ if(isset($_POST['update-info'])){
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="../../public/assets/img/logo.png" alt=""> -->
+        <img src="../../public/assets/img/logo.png" alt="">
         <h1>Welfare</h1>
       </a>
 
@@ -175,7 +197,7 @@ if(isset($_POST['update-info'])){
       </nav><!-- .navbar -->
 
     </div>
-  </header><!-- End Header -->
+  </header>
   <!-- End Header -->
 
 <br>
@@ -198,7 +220,7 @@ if(isset($_POST['update-info'])){
             <br>
             <div class="form-control">
                 
-                <form action="costumer-info.php" method="POST">
+                <form action="" method="POST">
 
                     <div class="mb-3">
                         <label class="form-label">Name :</label> 
@@ -212,21 +234,60 @@ if(isset($_POST['update-info'])){
 
                     <div class="mb-3">
                         <label class="form-label">Enter your phone number:</label>
-                        <input id="phone" class="form-control"  type="tel" value="<?=$phoneNumber?>" name="phone" />
+                        <input id="phone" class="form-control"  type="tel" value="<?=$oldPhoneNumber?>" name="phone" />
                     </div>
-                    
+
                     <!-- Checking if the phone number verified or not -->
+
+                    <?php
+
+                        if(isset($_SESSION['user_PhoneNumberVerifying'])){
+                            if($_SESSION['user_PhoneNumberVerifying'] == 0){
+                                echo "<p style='font-size: 13px; color: red;'>Phone number isn't verified.
+                                <a href='my-phone' >Verify it now.</a></p>
+                                ";
+
+                            }else{
+                                echo "<p style='fontSize: 9px; color: green;'>verified.</p>
+                                ";
+
+                            }
+                        }
+
+                    ?>
 
                     <div class="mb-3">
                         <label class="form-label">CIN:</label>
-                        <input id="cin" class="form-control"  type="tel" value="<?=$userCIN?>" name="cin" />
+                        <input id="cin" class="form-control"  type="tel" value="<?=$oldUserCIN?>" name="cin" />
                     </div>
 
                     <!-- Checking if the phone number verified or not -->
 
+                    <?php
+
+                        if(isset($_SESSION['user_CinVerifying'])){
+                            if($_SESSION['user_CinVerifying'] == 0){
+                                echo "<p style='font-size: 13px; color: red;'>CIN isn't verified.
+                                <a href='my-cin' >Verify it now.</a></p>
+                                ";
+
+                            }else{
+                                echo "<p style='fontSize: 9px; color: green;'>verified.</p>
+                                ";
+
+                            }
+                        }
+
+                    ?>
+
                     <div class="mb-3">
                         <label class="form-label">Address :</label> 
-                        <input type="text" name="address" class="form-control" value="<?=$userAddress?>" placeholder="Enter your address">
+                        <input type="text" name="address" class="form-control" value="<?=$oldUserAddress?>" placeholder="Enter your address">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">About me</label>
+                        <textarea name="about" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -291,13 +352,15 @@ if(isset($_POST['update-info'])){
 }else{
 ?>
 
+<br>
+<br>
 <h1 class="container mt-5">Hello &#128149; </h1>
 <div class="container mx-auto p-5 text-white bg-black fs-4">
     <p>Please make sure to Log in if you already have an account, or please join us by creating an account.</p>
 
     <div class="btn-group-vertical w-100" role="group" aria-label="Vertical button group">
-      <a href="../../../login.php" class="btn btn-dark fs-5">Log in &nbsp; <i class='bx bx-log-in'></i></a>
-      <a href="../../../register.php" class="btn btn-dark fs-5"> Register &nbsp; <i class='bx bxs-user-plus'></i> </a>
+      <a href="../../login" class="btn btn-dark fs-5">Log in &nbsp; <i class='bx bx-log-in'></i></a>
+      <a href="../../register" class="btn btn-dark fs-5"> Register &nbsp; <i class='bx bxs-user-plus'></i> </a>
     </div>
 </div>
 

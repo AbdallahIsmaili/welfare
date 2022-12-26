@@ -2,6 +2,7 @@
 
 include "../app/classes/databaseClass.php";
 include "../app/classes/profileClass.php";
+include "../app/classes/loginClass.php";
 
 session_start();
 $userPhoneNumber = "";
@@ -17,6 +18,18 @@ $getProfile = new Profile();
 $result = $getProfile->getProfileImg($email);
 if($result != 0){
   $user_image = $result;
+}
+
+$logout = new Login();
+
+if(isset($_POST['logout'])){
+
+  $result = $logout->logoutUser();
+
+  if($result == true){
+    echo "<script>window.open('../login' ,'_self');</script>";
+  }
+
 }
 
 ?>
@@ -39,6 +52,11 @@ if($result != 0){
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+     <!-- Bootstrap -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
 
 
     <!-- CSS -->
@@ -70,7 +88,10 @@ if($result != 0){
               echo "<a href='update/my-phone'>$userPhoneNumber <i class='bx bx-edit bx-tada' ></i></a>";
 
             }else{
-              echo "<p>$userPhoneNumber</p>";
+              $userPhoneNumber = $_SESSION['user_phone'];
+              if($_SESSION['phoneNum'])
+              echo "<p>$userPhoneNumber  </p>";
+
             }
             
           ?>
@@ -120,7 +141,12 @@ if($result != 0){
               <li><a href="../map">Mapping</a></li>
               <li><a href="../contact">Contact</a></li>
             </ul>
-            <button>Follow</button>
+
+            <form action="" method="post">
+
+              <button type='submit' name='logout' style='backGround: orangered;'>Log out</button>
+
+            </form>
           </nav>
 
           <div class="photos">

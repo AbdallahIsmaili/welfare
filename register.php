@@ -27,6 +27,8 @@ if(isset($_POST['register'])){
     $error = "";
     $validationError = "";
     $about = "";
+    $phoneNumber_verifying = 0;
+    $phoneCin_verifying = 0;
 
     // Generate a verification key
     $verificationKey = md5(time(). $email);
@@ -52,7 +54,7 @@ if(isset($_POST['register'])){
     }
 
     if(empty($error)){
-        $result = $register->registerUser($name, $email, $phoneNumber, $userAddress, $password, $confirm_password, $date, $image, $validation, $verificationKey, $cin, $birthDate, $about);
+        $result = $register->registerUser($name, $email, $phoneNumber, $userAddress, $password, $confirm_password, $date, $image, $validation, $verificationKey, $cin, $birthDate, $about, $phoneNumber_verifying, $phoneCin_verifying);
 
         if($result == 1){
           $validationError .= "Used Email has been already taken! <a href='login?email=$email'> [ Log in with that email. ] </a> <br>";

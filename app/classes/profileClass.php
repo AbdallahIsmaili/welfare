@@ -2,7 +2,7 @@
 
 class Profile extends Database{
 
-    public function updateUserInfo($name, $userURL, $email, $phoneNumber, $userAddress, $password){
+    public function updateUserInfo($name, $userURL, $email, $phoneNumber, $userAddress, $password, $phoneNumberVerifying, $cinVerifying, $userAbout){
 
         try{
             
@@ -17,7 +17,7 @@ class Profile extends Database{
             if(count($result) > 0){
                 if($password == $result[0]->user_password){
 
-                    $sql = "UPDATE users SET user_email = '$email', phone_number = '$phoneNumber', user_address = '$userAddress', username = '$name' WHERE user_urlAddress = '$userURL'";
+                    $sql = "UPDATE users SET user_email = '$email', phone_number = '$phoneNumber', user_address = '$userAddress', username = '$name', phoneNumber_isVerify = '$phoneNumberVerifying', userCin_isVerify = '$cinVerifying', user_about = '$userAbout' WHERE user_urlAddress = '$userURL'";
 
                     $statement = $this->conn->prepare($sql);
                     $statement->execute();

@@ -2,7 +2,7 @@
 
 class Register extends Database{
 
-    public function registerUser($name, $email, $phoneNumber, $userAddress, $password, $confirm_password, $date, $image, $validation, $verificationKey, $cin, $birthDate, $about){
+    public function registerUser($name, $email, $phoneNumber, $userAddress, $password, $confirm_password, $date, $image, $validation, $verificationKey, $cin, $birthDate, $about, $phoneNumber_verifying, $phoneCin_verifying){
 
         try{
             
@@ -24,7 +24,7 @@ class Register extends Database{
                     $url_address = $this->get_random_string_max(99);
                     
                     $password = hash("sha1", $password);
-                    $sql = "INSERT INTO users (user_email, phone_number, user_address, user_password, username, user_urlAddress, join_date, rank, profile_picture, validation, verification_key, user_cin, user_birth_date, user_about) VALUES ('$email', '$phoneNumber', '$userAddress', '$password', '$name', '$url_address','$date', 'costumer', '$image', '$validation', '$verificationKey', '$cin', '$birthDate', '$about')";
+                    $sql = "INSERT INTO users (user_email, phone_number, user_address, user_password, username, user_urlAddress, join_date, rank, profile_picture, validation, verification_key, user_cin, user_birth_date, user_about, phoneNumber_isVerify, userCin_isVerify) VALUES ('$email', '$phoneNumber', '$userAddress', '$password', '$name', '$url_address','$date', 'costumer', '$image', '$validation', '$verificationKey', '$cin', '$birthDate', '$about', '$phoneNumber_verifying', '$phoneCin_verifying')";
                     $statement = $this->conn->prepare($sql);
                     $statement->execute();
                     $result = $statement->fetchAll(PDO::FETCH_OBJ);

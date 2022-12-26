@@ -29,6 +29,8 @@ public function loginUser($email, $password){
                     $_SESSION['validation'] = $result[0]->validation;
                     $_SESSION['user_about'] = $result[0]->user_about;
                     $_SESSION['user_cin'] = $result[0]->user_cin;
+                    $_SESSION['user_PhoneNumberVerifying'] = $result[0]->phoneNumber_isVerify;
+                    $_SESSION['user_CinVerifying'] = $result[0]->userCin_isVerify;
                     return 1;
                     
                 }else{
