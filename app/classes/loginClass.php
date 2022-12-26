@@ -28,6 +28,7 @@ public function loginUser($email, $password){
                     $_SESSION['join_date'] = $result[0]->join_date;
                     $_SESSION['validation'] = $result[0]->validation;
                     $_SESSION['user_about'] = $result[0]->user_about;
+                    $_SESSION['user_cin'] = $result[0]->user_cin;
                     return 1;
                     
                 }else{

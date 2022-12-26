@@ -77,7 +77,7 @@ if($result != 0){
 
         <form action="./update/updateImage.php" method="post" id='updatePictureForm' enctype="multipart/form-data">
 
-          <input name="uploaded-image" id="newImagePicture" class="fileInput" type="file">
+          <input name="uploaded-image" id="newImagePicture" class="btn btn-info" type="file">
           <ul class="about">
 
             <li> 
@@ -86,7 +86,7 @@ if($result != 0){
                       style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
             </li>
 
-            <li> Update Info </li>
+            <li> <a href="update/update-info">Update Info</a> </li>
             <li> Add Post </li>
           </ul>
         </form>
